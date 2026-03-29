@@ -13,7 +13,7 @@ def problimite(N, Q, R, a, b, alpha, beta):
     for i in range(N):
         if i == 0:
             vec_b[i] = R[i]*h**2 - alpha
-        if i == N-1:
+        elif i == N-1:
             vec_b[i] = R[i]*h**2 - beta
         else:
             vec_b[i] = R[i]*h**2
