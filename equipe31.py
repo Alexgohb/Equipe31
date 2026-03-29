@@ -1,1 +1,1 @@
-print('allo')
+from tridiagonal import tridiagonal
