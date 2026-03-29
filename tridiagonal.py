@@ -1,8 +1,15 @@
+import numpy as np
+
+
 #algorithme de la page 127 du livre:
 
 def tridiagonal(N, D, I, S, b):
-    y = [0]*N
-    x = [0]*N
+    D = D.copy()
+    S = S.copy()
+    b = b.copy()
+    I = I.copy()   
+    y = np.zeros(N)
+    x = np.zeros(N)
     y[0] = b[0]/D[0]
     for i in range(1, N):
         S[i-1] = S[i-1]/D[i-1]
