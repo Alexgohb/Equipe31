@@ -51,3 +51,41 @@ plt.ylabel('y(x)')
 plt.legend()
 plt.grid(True)
 plt.show()
+
+#Question 2 b)
+
+#On peut faire une fonction pour faciliter le calcul du max de difference entre approx et exacte:
+
+def calcul_max(N):
+    x = np.linspace(0, 6, N+2)
+    y_exact = np.zeros(N+2)
+    for i, j in enumerate(x):
+        y_exact[i] = solution_exacte(j)
+    y_approx = problimite(N, k**2*np.ones(N), -k**2*Ta*np.ones(N), a, b, alpha, beta)
+    difference = []
+    for i in range(N+2):
+        difference.append(abs(y_exact[i] - y_approx[i]))
+    return max(difference)
+
+#Pour h = L/3, N = 2  
+print(calcul_max(2))
+#Pour h = L/6, N = 5
+print(calcul_max(5))
+#Pour h = L/100, N = 99
+print(calcul_max(99))
+#Pour h = L/1000, N = 999
+print(calcul_max(999))
+#Pour h = L/10000, N = 9999
+print(calcul_max(9999))
+
+#On fait le graphique avec echelle log:
+
+Erreur = np.array([calcul_max(2),calcul_max(5),calcul_max(99),calcul_max(999),calcul_max(9999)])
+h = np.array([2, 1, 6/100, 6/1000, 6/10000])
+
+plt.loglog(h, Erreur, 'o-', color='red')
+plt.xlabel('h')
+plt.ylabel('E(h)')
+plt.title('Figure 2: Erreur en fonction de h')
+plt.grid()
+plt.show()
